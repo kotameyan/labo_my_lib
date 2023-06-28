@@ -73,12 +73,12 @@ def save_val_json(detect_folder_path):
     os.makedirs(val_json_path, exist_ok=True)
 
     # 2. "val"と名前のつく全てのフォルダからpredictions.jsonを取ってきて、val_jsonフォルダに格納
-    for folder in os.listdir(detect_folder_path):
+    for folder in sorted(os.listdir(detect_folder_path)):
         if re.match(r'val.*', folder):
             src_file = os.path.join(detect_folder_path, folder, 'predictions.json')
             if os.path.isfile(src_file):
                 # 全てのファイル名をpredictionsX.json形式にする (Xは数字)
-                index = '1' if folder == 'val' else folder[3:]
+                index = folder[3:] if folder != 'val' else '1'
                 dst_file_name = f'predictions{index}.json'
                 dst_file = os.path.join(val_json_path, dst_file_name)
                 shutil.copy(src_file, dst_file)
