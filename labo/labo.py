@@ -77,8 +77,9 @@ def save_val_json(detect_folder_path):
         if re.match(r'val.*', folder):
             src_file = os.path.join(detect_folder_path, folder, 'predictions.json')
             if os.path.isfile(src_file):
-                # valフォルダの場合は名前をpredictions.json、それ以外はpredictionsX.jsonにする
-                dst_file_name = 'predictions.json' if folder == 'val' else f'predictions{folder[3:]}.json'
+                # 全てのファイル名をpredictionsX.json形式にする (Xは数字)
+                index = '1' if folder == 'val' else folder[3:]
+                dst_file_name = f'predictions{index}.json'
                 dst_file = os.path.join(val_json_path, dst_file_name)
                 shutil.copy(src_file, dst_file)
 
