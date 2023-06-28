@@ -137,4 +137,6 @@ def analyze_val_json(val_json_path):
 
     plt.xticks(rotation=90) # x軸のラベルを90度回転
     plt.tight_layout() # レイアウトの調整
-    plt.show() # グラフの表示
+
+    # デスクトップに画像として保存
+    plt.savefig(os.path.expanduser('~/Desktop/result_graph.png'))
