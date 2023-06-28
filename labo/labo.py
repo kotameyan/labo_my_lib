@@ -131,4 +131,9 @@ def analyze_val_json(val_json_path):
     sns.barplot(x='image_id', y='score', hue='group', data=grouped) # 棒グラフの作成
 
     plt.title('Average Score per Image ID for Each Group') # タイトル
+
+    # グラフをデスクトップに保存
+    plt.savefig(os.path.expanduser("~/Desktop/result_graph.png"))
+
+    # グラフを表示
     plt
